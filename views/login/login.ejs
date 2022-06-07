@@ -1,0 +1,40 @@
+
+<div style="position: absolute ; top:120px">
+  <% if (messages.error) { %>
+    <p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+     <p class="alert alert-success mt-4"><%- messages.success %></p>
+<% } %>
+</div>
+
+<div class="form-container">
+  <div class="form-header">
+    
+      <div class="form-logo">
+        <span class="l-text1 small">WebTurns.io</span>
+        <span><i class="fa-solid fa-user-tie big-size"></i></span>
+      </div>
+    
+    <h2 class="title right">Login Form</h2>
+  </div>
+  <form action="/login/authlogin" method="post">
+
+
+    <div class="form-control">
+      <label for="email">Email Address</label>
+      <input type="email" name="email" id="email" value=" <%=my_session.email%> " >
+    </div>
+
+    <div class="form-control">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password"  >
+    </div>
+
+    <div class="btn-cont">
+       <button class="button">Submit</button>
+    </div>
+
+  </form>
+</div>

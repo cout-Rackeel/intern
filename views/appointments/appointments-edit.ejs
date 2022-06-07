@@ -1,0 +1,56 @@
+<div class="message">
+  <% if (messages.error) { %>
+    <p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+     <p class="alert alert-success mt-4"><%- messages.success %></p>
+<% } %>
+</div>
+
+<table class="table" style="width:90%; margin:30px auto; text-align: center;">
+  <thead>
+    <tr>
+      <th>Intern Name</th>
+      <th>Trainer Name</th>
+      <th>Training Area</th>
+      <th>Session</th>
+      <th>Action</th>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+
+
+    <form action="/appointments/edit-data" method="post">
+      <tr>
+        <td> <%= data.intern_fname%> <%= data.intern_lname%></td>
+        <td> <%= data.trainer_fname%> <%= data.trainer_lname%> </td>
+        <td>
+          <select name="trn_area" id="">
+            <option value="<%= data.area_id %>" selected> <%= data.area_nm %></option>
+            <option value="1">Web Development</option>
+            <option value="2">Database Management Systems</option>
+            <option value="3">Human Resources</option>
+            <option value="4">Information Technology</option>
+          </select>
+        </td>
+        <td> 
+          <select name="session" id="">
+            <option value="<%= data.sess_id %>" selected ><%= data.session %></option>
+            <option value="1">10:00am - 12:00pm</option>
+            <option value="2">1:00pm - 3:00pm</option>
+            <option value="3">4:00pm - 5:00pm</option>
+          </select>
+        </td>
+          <td class="actions">
+          <button class="button">Update</button>
+          <a href="/appointments" class=" button">Back</a>
+          </td> 
+      </tr>
+           
+    </form>
+  
+  </tbody>
+</table>

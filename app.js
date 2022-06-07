@@ -1,49 +1,62 @@
+// Declaring Port
 const port = process.env.PORT || 8080;
 
-var path = require('path');
-var mysql = require('mysql');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var express = require('express');
-var flash = require('express-flash');
-var session = require('express-session');
-var validator = require('express-validator');
-var expressLayout = require('express-ejs-layouts');
+// BASE VARIABLES
+var bodyParser = require("body-parser");
+var cookieParser = require("cookie-parser");
+var express = require("express");
+var expresslayout = require("express-ejs-layouts");
+var flash = require("express-flash");
+var session = require("express-session");
+var validator = require("express-validator");
+var path = require("path");
+var mysql = require("mysql");
 
 var app = express();
 
-//Declaring Routes
-var indexRoute = require('./routes/index')
+// Declaring Routes
+var indexRoute = require("./routes/index");
+var loginRoute = require("./routes/login");
+var appointmentsRoute = require("./routes/appointments");
+var internsRoute = require("./routes/interns");
 
-// Setting View
-app.set('views' , path.join(__dirname , 'views'));
-app.use('view engine' , 'ejs');
 
-//Setting Layout
-app.set('layout' , 'layouts/layout');
-app.use(expressLayout);
+
+// Setting up Views
+app.set('views', path.join(__dirname,'views'));
+app.set('view engine' , 'ejs');
+
+// Setting up Layouts
+app.set("layout", "layouts/layout");
+app.use(expresslayout);
 
 //Setting up Public
-app.use(express.static(path.join(__dirname , 'public')))
+app.use(express.static(path.join(__dirname, "public")));
 
-// Use Body Parser
+//Setting up Body Parser
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended : true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Setting up Sessions
+// Setting up Session and Flash
 app.use(cookieParser());
-app.use(session({
-  secret: '!nt3rnsD0NtTu4N',
-  resave:false,
-  saveUninitialized:true,
-  cookie: { maxAge:120000 }
-}))
+app.use(
+	session({
+		secret: "!nt3rnsD0NtTu4N",
+		resave: false,
+		saveUninitialized: true,
+		cookie: { maxAge: 1200000 },
+	})
+);
 app.use(flash());
 
-//Using Route MiddleWare
-app.use('/' , indexRoute);
+// Setting up Routing middleware
+app.use("/", indexRoute);
+app.use("/login", loginRoute);
+app.use("/appointments", appointmentsRoute);
+app.use("/interns", internsRoute);
 
+// Listening to Port
 
-app.listen(port , () => {console.log(`Listening to port... ${port}`);})
+app.listen(port, () => console.log(`Listening on port ${port}...`));
 
 module.exports = app;

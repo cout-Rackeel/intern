@@ -1,0 +1,56 @@
+<div class="message">
+  <% if (messages.error) { %>
+    <p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+     <p class="alert alert-success mt-4"><%- messages.success %></p>
+<% } %>
+</div>
+
+<div class="badge-display">
+  <h3><span class="badge badge-color-1" >Number of Interns :- <%= interns %> </span></h3>
+  <h3><a href="/" class="badge badge-color-1" >Add Intern </a></h3>
+</div>
+
+<table class="table" style="width:90%; margin:30px auto; text-align: center;">
+  <thead>
+    <tr>
+      <th>Intern ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+   <% 
+      if (data.length) { 
+        for(var i = 0; i < data.length; i++){
+   %>
+        <tr>
+          <td> <%= data[i].id%></td>
+          <td> <%= data[i].f_name%></td>
+          <td> <%= data[i].l_name%> </td>
+          <td> <%= data[i].email%> </td>
+          <% if(my_session.usertype === 'admin') { %> 
+            <td class="actions">
+            <a href="/interns/mydata/<%=data[i].user_id%>" class=" button">Show More</a>
+            </td>
+          <% }%>    
+
+          
+        </tr>
+      <%
+         }
+          } else { 
+      %>
+
+      <tr>
+        <td colspan="4" style="text-align: center;"> NO Appointments !!!!</td>
+      </tr>
+
+      <% } %>
+                 
+  </tbody>
+</table>

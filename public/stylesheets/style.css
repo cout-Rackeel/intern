@@ -4,10 +4,189 @@
   margin: 0px;
 }
 
+:root{
+  --blue: #2f64a3;
+  --green: #65d269;
+}
+
 body{
-  background-color: rgb(247, 247, 247) !important;
+  background-color: rgb(250, 250, 250) !important;
 }
 
 /* NAVBAR STYLES */
+a{
+  text-decoration: none !important;
+  color: #333 !important;
+}
+
+.text.--2{
+  color: white !important;
+  text-align: center;
+}
+
+
+.button{
+  border: 0.1px solid gainsboro;
+  outline: none;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-family: Comfortaa , sans-serif;
+}
+
+.l-text1{
+  font-family: 'Source Sans 3' , sans-serif;
+  
+}
+
+.big-size{
+  font-size: 5vh;
+}
+
+.small{
+  font-size: 4vh;
+}
+
+.l-text2{
+  font-family: 'Source Sans 3' , sans-serif;
+}
+
+.section-cont{
+  margin: 20px;
+  border-bottom: lightgray;
+}
 
 /* NAVBAR END */
+
+/* FORMS STYLES */
+
+.form-container{
+  margin: 100px auto;
+  width: 600px;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.055);
+  padding-bottom: 20px;
+}
+
+.form-logo{
+  width: 100%; 
+  background-color: white;
+  text-align: center;
+  border-radius: 12px ;
+  border: 1px solid rgba(51, 51, 51, 0.274);
+}
+
+
+
+.form-header{
+width: 100%;
+display: flex;
+justify-content: space-between;
+border-bottom: 1px solid lightgray;
+align-items: center;
+padding: 10px 30px;
+margin-bottom: 15px;
+background-image: linear-gradient(70deg , hsl(305, 99%, 31%, 0.5) , hsl(249, 100%, 24% , 0.5) );
+}
+
+.title{
+  font-family: Montserrat, sans-serif;
+  width: 100%;
+  font-size: 24px;
+  text-transform: capitalize;
+}
+
+.username{
+  font-family: Montserrat, sans-serif;
+  width: 100%;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.title.large{
+  font-size: 30px;
+}
+
+.title.sub{
+  margin-bottom: 20px ;
+}
+
+.right{
+  text-align: right;
+}
+
+.left{
+  text-align: left;
+}
+
+.center{
+  text-align: center;
+}
+
+label, input,button{
+  display: block;
+  font-family: Montserrat, sans-serif;
+  color: black;
+  font-weight: 600;
+}
+
+.form-control label{
+  font-size: 18px;
+}
+
+.form-control input{
+ width: 280px;
+ margin-top: 10px;
+ height: 30px;
+ padding: 0px 30px;
+ border: 1px solid lightgray;
+}
+
+.form-control{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 0px 50px;
+  margin-bottom: 20px;
+}
+
+.btn-cont{
+  margin: 0px 50px;
+}
+
+.btn-cont button{
+  font-size: 18px;
+  padding: 5px 0px;
+}
+
+.actions{
+  display: flex;
+  width: 100%;
+
+}
+
+.badge-display{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin: 20px 0px;
+}
+
+.badge-color-1{
+  font-family: Mukta, sans-serif;
+  font-weight: 100;
+  margin-bottom: 10px;
+  color: white;
+  background-color: var(--green);
+}
+
+.intern-nm{
+  font-family: 'Source Sans 3' , sans-serif;
+}

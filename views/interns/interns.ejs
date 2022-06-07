@@ -1,0 +1,34 @@
+
+<div>
+  <div class="badge-display">
+    
+    <h2 class="intern-nm"><%= data[0].intern_fname %> <%= data[0].intern_lname %>  </h2>
+    <h3><span class="badge badge-color-1 ">Total Sessions:- <%= tot_session %>  </span></h3>
+    <h3><span class="badge badge-color-1 ">Average Hours:- <%= avg_hours %>  </span></h3>
+    <h3><span class="badge badge-color-1 ">Total Wages :- <%= (tot_wages).toLocaleString('en-US', {style: 'currency',currency: 'USD',}) %> </span></h3>
+
+  </div>
+  
+   
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Training Area</th>
+          <th>Session</th>
+          <th>Number Of Hours</th>
+          <th>Daily Rate</th>
+        </tr>
+      </thead>
+      <% data.forEach(item => { %>
+      <tbody>
+        <tr>
+          <td><%= item.area_nm %> </td>
+          <td><%= item.session %> </td>
+          <td><%= item.tot_hours %> </td>
+          <td><%= (item.daily_rate).toLocaleString('en-US', {style: 'currency',currency: 'USD',})%></td>
+        </tr>
+      </tbody>
+      <% }) %>
+    </table>
+
+</div>

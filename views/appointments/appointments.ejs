@@ -1,0 +1,55 @@
+<div class="message">
+  <% if (messages.error) { %>
+    <p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+     <p class="alert alert-success mt-4"><%- messages.success %></p>
+<% } %>
+</div>
+
+<table class="table" style="width:90%; margin:30px auto; text-align: center;">
+  <thead>
+    <tr>
+      <th>Intern Name</th>
+      <th>Trainer Name</th>
+      <th>Training Area</th>
+      <th>Session</th>
+      <% if(my_session.usertype === 'admin') { %> 
+        <th>Action</th>
+      <% }%>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+   <% 
+      if (data.length) { 
+        for(var i = 0; i < data.length; i++){
+   %>
+        <tr>
+          <td> <%= data[i].intern_fname%> <%= data[i].intern_lname%></td>
+          <td> <%= data[i].trainer_fname%> <%= data[i].trainer_lname%> </td>
+          <td> <%= data[i].area_nm%> </td>
+          <td> <%= data[i].session %> </td>
+          <% if(my_session.usertype === 'admin') { %> 
+            <td class="actions">
+            <a href="appointments/edit/<%=data[i].id%>" class=" button">Edit</a>
+            </td>
+          <% }%>    
+
+          
+        </tr>
+      <%
+         }
+          } else { 
+      %>
+
+      <tr>
+        <td colspan="4" style="text-align: center;"> NO Appointments !!!!</td>
+      </tr>
+
+      <% } %>
+                 
+  </tbody>
+</table>

@@ -1,12 +1,164 @@
-<div class="nav-cont">
+<style>
+
+  .nav-cont{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .details{
+    height: 25px;
+    background-color: hsl(240, 55%, 4%, 0.8);
+    color: white;
+    font-family: Mukta , sans-serif;
+    font-size: 2.2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  li {
+     display: inline-block;
+     list-style-type: none;
+  }
+
+  .navbar{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 10px 20px;
+    align-items: center;
+    margin-bottom: 0px !important;
+  }
+
+
+  .nav-links{
+    display: flex;
+    width: 500px;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  
+  .nav-cont a , li{
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 100;
+    font-size: 2.8vh;
+    line-height: 1.7;
+    transition: all 300ms ease 0s;
+    text-transform: capitalize;
+    
+  }
+
+ ol li a , .user-section li a {
+  border-bottom: solid transparent;
+  border-image-slice: 1;
+  border-width: 2px;
+  }
+
+  ol li a:hover , .user-section li a:hover {
+  border-bottom: solid;
+  border-image-slice: 1;
+  border-width: 2px;
+  border-image-source: linear-gradient(to left,  var(--green) , var(--blue));
+  transition: all 300ms ease 0s;
+  }
+
+  .border-gradient {
+  border-bottom: solid;
+  border-image-slice: 1;
+  border-width: 2px;
+}
+.border-gradient-purple {
+  border-image-source: linear-gradient(to left,  var(--green) , var(--blue));
+}
+
+.fa-solid.fa-user-tie{
+  background-image: linear-gradient(70deg , var(--green) ,var(--blue));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.user-section{
+  width: 100%;
+}
+
+.username{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1rem;
+}
+
+.login-btn , .signup{
+padding: 8px 20px;
+color: white !important;
+border-radius: 3px;
+box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.096);
+}
+
+.login-btn{
+  background-image: linear-gradient(60deg, var(--green) , hsl(239, 100%, 24%));
+}
+
+.signup{
+  background-image: linear-gradient(60deg,   var(--blue), var(--green) );
+}
+
+
+</style>
+
+
+<div class="nav-cont border-gradient border-gradient-purple">
+  <div class="details"> <marquee behavior="" direction="">Welcome to Webturns.io sign up and be an intern today!!</marquee></div>
+
   <nav>
     <ul class="navbar">
-      <li class="nav-item">
-        <a href="/" class="logo-cont">
-          <span class="logo-text big">WebTurns.io</span>
-          <i class="fa-solid fa-user-tie"></i>
+      <li>
+        <a href="/" class="logo">
+          <span class="l-text1 big-size">WebTurns.io</span>
+          <span><i class="fa-solid fa-user-tie big-size"></i></span>
         </a>
+      </li>
+
+      <li>
+        <ol class="nav-links">
+
+          <% if (my_session.usertype == 'admin') {%> 
+          <li><a href="/interns/interns-all">All Interns</a></li>
+          <li><a href="/appointments">Appointments</a></li>
+          <% } %> 
+          <% if (my_session.loggedIn && my_session.usertype !== 'admin') {%> 
+          <li><a href="/appointments">Appointments</a></li>
+          <li><a href="/interns/mydata/<%=  my_session.userID %> ">My Data</a></li> 
+          <% } %> 
+        </ol>
+      </li>
+
+      <li>
+        <div class="user-section">
+          <% if (!my_session.loggedIn) {%> 
+          <li><a href="/login" class="login-btn">Login</a></li>
+          <li><a href="/login/signup" class="signup">Sign Up</a></li>
+          <%} else {%> 
+            <li><a href="/login/logout" class="login-btn">Logout</a></li>
+            <% if(my_session.is_lib === 'yes') { %> 
+              <div>
+                <li class=""> <%= my_session.email %> </li>
+                <span style="color: gold ;"><i class="fas fa-star"></i></span>
+              </div>
+            <% }else{ %> 
+              <div>
+                <li class="username"> <%= my_session.email %>  <span style="color: rebeccapurple ;"><i class="fa-solid fa-user-check"></i></span></li>
+                
+              </div>
+            <% } %> 
+          <%} %> 
+        </div>
       </li>
     </ul>
   </nav>
+
 </div>
