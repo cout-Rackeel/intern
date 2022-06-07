@@ -36,6 +36,7 @@
           <% if(my_session.usertype === 'admin') { %> 
             <td class="actions">
             <a href="/interns/mydata/<%=data[i].user_id%>" class=" button">Show More</a>
+            <a href="/interns/interns-all/edit/<%=data[i].user_id%>" class=" button">Edit</a>
             </td>
           <% }%>    
 

@@ -1,0 +1,38 @@
+<div class="message">
+  <% if (messages.error) { %>
+    <p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+     <p class="alert alert-success mt-4"><%- messages.success %></p>
+<% } %>
+</div>
+
+
+<table class="table" style="width:90%; margin:30px auto; text-align: center;">
+  <thead>
+    <tr>
+      <th>Intern ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <form action="/interns/update" method="post">
+    <tbody>
+   
+      <tr>
+        <td> <input type="hidden" name="user_id"value="<%= data.user_id%>" > <%= data.id%></td>
+        <td>  <input type="text" name="f_name" value="<%= data.f_name%>"> </td>
+        <td>  <input type="text" name="l_name" value="<%= data.l_name%>">  </td>
+        <td>  <input type="text" name="email" value="<%= data.email%>">  </td>
+          <td class="actions">
+            <button class="button">Update</button>
+          <a href="/interns/interns-all" class=" button">Back</a>
+          </td>     
+      </tr>
+               
+</tbody>
+  </form>
+</table>

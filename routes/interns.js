@@ -134,4 +134,61 @@ router.get('/interns-all',(req,res,next) => {
  
 })
 
+router.get('/interns-all/edit/:id' , (req,res,next) => {
+  if(req.session.loggedIn && req.session.usertype == 'admin'){
+
+    var editSQL = "SELECT i.user_id,  i.id , i.f_name , i.l_name , u.email " +
+    " FROM interns.interns i , interns.users u" +
+    " WHERE i.user_id = u.id AND u.id =" + req.params.id 
+
+    conn.query(editSQL , (err,rows) =>{
+      var locals = {
+        title : 'Interns Edit Page - WebTurns.io',
+        stylesheet : '/stylesheets/index',
+        bootstrap : true,
+        my_session : req.session,
+        data:rows[0],
+      }
+      res.render('interns/interns-edit' , locals)
+    })
+
+
+  }else{
+    res.redirect('/login')
+  }
+})
+
+
+
+
+
+
+router.post('/update' , (req,res,next) => {
+  var userSQL = "UPDATE interns.users SET email ='" + req.body.email + 
+  "' WHERE id = " + req.body.user_id
+  var internSQL = "UPDATE interns.interns SET f_name ='" + req.body.f_name + 
+  "',l_name ='" + req.body.l_name + 
+  "' WHERE interns.user_id = " + req.body.user_id
+
+  function updateUsers(callback){
+    conn.query(userSQL,(err,rows) => {
+      conn.query(internSQL,(err,rows) =>{
+        req.flash('success','Succeed');
+        res.redirect('/interns/interns-all/')
+      })
+      return callback;
+    })
+  }
+  
+  updateUsers(function(result){
+    
+  })
+
+  
+
+})
+
+
+
+
 module.exports = router;
